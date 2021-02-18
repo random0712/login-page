@@ -1,16 +1,19 @@
 import React from 'react';
-import { Button, Form, Input } from './components'
 
+import { UserProvider } from './contexts/user'
+
+import { Signin } from './components';
+
+import api from './config/axios'
 
 function App() {
   return (
-    <div className="App">
-      <Form>
-          <Input/>
-          <Input/>
-          <Button>Log in</Button>
-      </Form>
-    </div>
+    <UserProvider>
+      <div className="App">
+        <Signin />
+        <button onClick={() => api.get("/token").then(res => console.log(res))} >token validtion</button>
+      </div>
+    </UserProvider>
   );
 }
 

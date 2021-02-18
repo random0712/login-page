@@ -22,7 +22,7 @@ app.route('/signin')
     .post((req, res) => signIn(req, res))
 
 app.route('/token')
-    .get(validateJWT, (req, res) => res.send("Token valido"))
+    .get(validateJWT, (req, res) => res.send("Valid Token!"))
 
 app.listen(process.env.BACKEND_PORT, () => {
     console.log("Backend is running in port " + process.env.BACKEND_PORT);

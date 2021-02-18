@@ -61,7 +61,7 @@ function signIn(req, res) {
             if(!result) return res.send({code: 404, error: "Invalid password!"});
 
             jwt.sign({ id: user._id }, process.env.AUTH_SECRET, {
-                expiresIn: 60
+                expiresIn: "7 days"
             }, (err, token) => {
                 if(err) return console.log(err);
 
