@@ -1,18 +1,23 @@
 import React from 'react';
 
-import { UserProvider } from './contexts/user'
+import { UserProvider } from './contexts'
 
-import { Signin } from './components';
+import { Signin, Signup } from './components';
+
+import { StyledApp } from './styles';
 
 import api from './config/axios'
+import { useToggle } from './hooks';
 
 function App() {
+  const [toggle, toggleState] = useToggle('signin', 'signup');
   return (
     <UserProvider>
-      <div className="App">
-        <Signin />
-        <button onClick={() => api.get("/token").then(res => console.log(res))} >token validtion</button>
-      </div>
+      <StyledApp>
+        {toggle === 'signin' 
+          ? <Signin toggleState={toggleState} />
+          : <Signup toggleState={toggleState} />}
+      </StyledApp>
     </UserProvider>
   );
 }

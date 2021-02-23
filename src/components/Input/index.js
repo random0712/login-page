@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Input = ({children, onChange, type="text", id}) => {
+import { StyledLabel, StyledDiv, StyledInput } from './styles';
+
+const Input = ({children, onChange, type="text", id, label}) => {
 
     return (
-        <input type={type} onChange={onChange} id={id} />
+        <StyledDiv>
+            <StyledLabel htmlFor={id}>{label}: </StyledLabel>
+            <StyledInput type={type} onChange={onChange} id={id} />
+        </StyledDiv>
     )
 };
 

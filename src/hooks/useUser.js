@@ -7,7 +7,13 @@ const useUser = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        console.log('effect');
+        const localUser = JSON.parse(localStorage.getItem("user"));
+        const token = localStorage.getItem("token");
+
+        if(localUser && token) {
+            api.defaults.headers.Authorization = `Bearer ${token}`;
+            setUser(localUser);
+        }
     }, [])
 
     function handleSignin(data) {
@@ -24,8 +30,10 @@ const useUser = () => {
             .catch(console.error)
     }
     
-    function handleSignup() {
-
+    function handleSignup(data) {
+        api.post('signup', data)
+            .then(res => res.data.code === 201 ? console.log('Success') : console.log("Somenthing wrong happened"))
+            .catch(console.error);
     } 
     
     function handleLogout() {

@@ -1,14 +1,14 @@
 import React, { createContext } from 'react';
 
-import useUser from '../hooks/useUser';
+import { useUser } from '../hooks';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const { handleSignin, handleSignup, handleLogout } = useUser();
+    const { user ,handleSignin, handleSignup, handleLogout } = useUser();
     
     return (
-        <UserContext.Provider value={{ handleSignin, handleSignup, handleLogout }}>
+        <UserContext.Provider value={{ user, handleSignin, handleSignup, handleLogout }}>
             {children}
         </UserContext.Provider>
     );

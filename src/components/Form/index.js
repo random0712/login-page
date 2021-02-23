@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { StyledForm } from './styles';
+
 const Form = ({children, onSubmit}) => {
 
     return (
-        <form onSubmit={onSubmit}>{children}</form>
+        <StyledForm onSubmit={onSubmit}>{children}</StyledForm>
     )
 };
 

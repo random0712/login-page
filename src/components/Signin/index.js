@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 
 import { UserContext } from '../../contexts/user';
 
-import { Form, Button, Input } from '../index';
+import { Form, Button, Input, StyledLink } from '../index';
+
+import { Div } from './styles';
 
 function signinSubmit(event, handleSignin) {
     event.preventDefault();
@@ -20,16 +22,19 @@ function signinSubmit(event, handleSignin) {
 }
 
 
-const Signin = () => {
+const Signin = ({ toggleState }) => {
 
     const { handleSignin } = useContext(UserContext);
     
     return (
-        <Form onSubmit={(event) => signinSubmit(event, handleSignin)}>
-             <Input id="email"/>
-             <Input id="password"/>
-             <Button>Log in</Button>
-        </Form>
+        <Div>
+            <Form onSubmit={(event) => signinSubmit(event, handleSignin)}>
+                <Input id="email" label="Email"/>
+                <Input id="password" label="Password" type="password" />
+                <Button>Log in</Button>
+                <StyledLink onClick={() => toggleState()} >Don´t have an account yet? Register now clicking here!</StyledLink>
+            </Form>
+        </Div>
     )
 }
 
